@@ -15,14 +15,18 @@ export default function Register(props){
                     <h2 className="mt-3">SIGN UP</h2>
                     <p className="text-muted">Sign up for free to have access to our product</p>
                     
-                    <form action="#" method="POST">
+                    <form action="http://127.0.0.1:8000/auth/register/" method="POST">
                         <div className="mb-3">
-                            <label htmlFor="email" className="form-label">Email address:</label>
-                            <input type="email" className="form-control" id="email" placeholder="Enter your email" />
+                            <label htmlFor="username" className="form-label">Username:</label>
+                            <input type="username" className="form-control" id="username" placeholder="Enter your username" />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="password" className="form-label">Password:</label>
                             <input type="password" className="form-control" id="password" placeholder="Enter your password" />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="email" className="form-label">Email:</label>
+                            <input type="email" className="form-control" id="email" placeholder="Enter your email" />
                         </div>
                         <button type="submit" className="btn btn-primary w-100">register</button>
                     </form>
