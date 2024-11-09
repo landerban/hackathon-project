@@ -32,10 +32,12 @@ ALLOWED_HOSTS = []
 
 # All made Apps in here
 CUSTOM_APPS = [
-    'canvas',
     'rest_framework',
     'corsheaders',
-    "users.apps.UsersConfig",
+    'channels',
+    'users.apps.UsersConfig',
+    'chat.apps.ChatConfig',
+    'canvas.apps.CanvasConfig',
 ]
 
 # Only system apps in here
@@ -133,9 +135,6 @@ STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 STATIC_URL = 'static/'
 
 MEDIA_URL = 'media/'

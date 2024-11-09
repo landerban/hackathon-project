@@ -24,5 +24,6 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('canvas/',include('canvas.urls'))
+    path('canvas/', include('canvas.urls')),
+    path('chat/', include('chat.urls')),
 ]

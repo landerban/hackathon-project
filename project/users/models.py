@@ -28,7 +28,7 @@ class User(AbstractUser):
         default="",
     )
     date_joined = models.DateTimeField(
-        default=timezone.now,
+        auto_now_add=True,
     )
     is_active = models.BooleanField(
         default=True,
@@ -39,9 +39,6 @@ class User(AbstractUser):
     language = models.CharField(
         max_length=2,
         choices=LanguageChoices.choices,
-    )
-    time_limit_sec = models.PositiveIntegerField(
-        default=60,
     )
     last_pixel_time = models.DateTimeField(
         default=timezone.now,

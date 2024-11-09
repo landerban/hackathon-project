@@ -14,7 +14,6 @@ class CustomUserAdmin(UserAdmin):
                     "password",
                     "name",
                     "language",
-                    "time_limit_sec",
                     "last_pixel_time",
                 ),
                 "classes": ("wide",),
@@ -42,5 +41,5 @@ class CustomUserAdmin(UserAdmin):
         ),
     )
 
-    list_display = ("id", "username", "name")
+    list_display = ("id", "username", "name", "last_pixel_time")
     list_display_links = ("username", )
