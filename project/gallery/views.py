@@ -23,13 +23,12 @@ class GalleryAPIView(APIView):
     def get(self, request):
         images = Gallery.objects.all()
         image_list = []
-        for image in images:
+        for img in images:
             image_path = os.path.join(
-                settings.MEDIA_ROOT, 'gallery', image.file.name)
+                settings.MEDIA_ROOT, img.image.name)
             with open(image_path, "rb") as image_file:
                 encoded_string = base64.b64encode(
                     image_file.read()).decode("utf-8")
-                image_list.append({"id": image.id,
-                                   "title": image.title,
+                image_list.append({"id": img.id,
                                   "image": f"data:image/jpeg;base64,{encoded_string}"})
         return JsonResponse({"images": image_list})
