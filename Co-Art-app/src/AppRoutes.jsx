@@ -14,9 +14,9 @@ import Canvas from './pages/Canvas';
 import User from './pages/User';
 import Gallery from './pages/Gallery';
 
-const AppRoutes = ({ isDark, isAuthenticated }) => {
+const AppRoutes = ({ isDark, isAuthenticated, setIsAuthenticated}) => {
   const location = useLocation();
-
+  
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
@@ -37,21 +37,26 @@ const AppRoutes = ({ isDark, isAuthenticated }) => {
           } 
         />
         
+        {/* Protected route for /user */}
         <Route 
           path="/user" 
           element={
-            <PageTransition>
-              <User />
-            </PageTransition>
+            isAuthenticated 
+              ? (
+                  <PageTransition>
+                    <User />
+                  </PageTransition>
+                )
+              : <Navigate to="/login" />
           } 
         />
         
         <Route 
           path="/logout" 
           element={
-            <PageTransition>
-              <Logout />
-            </PageTransition>
+              <PageTransition>
+                <Logout isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+              </PageTransition>
           } 
         />
         
@@ -65,10 +70,10 @@ const AppRoutes = ({ isDark, isAuthenticated }) => {
                     <Chats isDark={isDark} />
                   </PageTransition>
                 ) 
-              : <Navigate to="/register" />
+              : <Navigate to="/login" />
           }
         />
-        
+
         <Route 
           path="/about" 
           element={
@@ -87,12 +92,17 @@ const AppRoutes = ({ isDark, isAuthenticated }) => {
           } 
         />
 
+        {/* Protected route for /canvas */}
         <Route 
           path="/canvas" 
           element={
-            <PageTransition>
-              <Canvas isDark={isDark} />
-            </PageTransition>
+            isAuthenticated 
+              ? (
+                  <PageTransition>
+                    <Canvas isDark={isDark} />
+                  </PageTransition>
+                )
+              : <Navigate to="/login" />
           } 
         />
         

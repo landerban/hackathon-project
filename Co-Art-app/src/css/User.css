@@ -1,0 +1,35 @@
+/* Container for the user profile */
+.user-profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Title styling */
+  .user-profile-container h3 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Profile card styling */
+  .profile-card {
+    width: 90%;
+    max-width: 500px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+  }
+  
+  /* Message styling */
+  .profile-message {
+    font-size: 1em;
+    color: #555;
+    white-space: pre-line; /* Preserve line breaks in message */
+  }
+  

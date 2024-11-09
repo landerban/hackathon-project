@@ -1,37 +1,56 @@
+/* Ensure footer stays at the bottom of the page */
+.body-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Fills the entire viewport height */
+}
+
+.main-content {
+  flex: 1; /* Pushes the footer to the bottom when content is short */
+}
+
 /* Footer Container */
 .footer {
-    border-top: 1px solid #444;
-    background-color: #9f6161;
-  }
-  
-  /* Dark Mode for Footer */
-  .footer.dark {
-    background-color: #333; /* Dark mode background color */
-    color: #ddd; /* Adjust text color if needed */
-  }
-  
-  /* Footer Links Styling */
-  .footer-links li {
-    list-style: none;
-  }
-  
-  .footer-links a {
-    color: #9f6161;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.3s;
-  }
-  
-  .footer-links a:hover {
-    color: #fff;
-  }
-  
-  /* Dark Mode Footer Links Styling */
-  .footer.dark .footer-links a {
-    color: #bbb; /* Link color in dark mode */
-  }
-  
-  .footer.dark .footer-links a:hover {
-    color: #fff;
-  }
-  
+  border-top: 1px solid #444;
+  background-color: #9f6161;
+  padding: 20px 0;
+  text-align: center;
+  color: #fff;
+}
+
+/* Dark Mode for Footer */
+.footer.dark {
+  background-color: #333; /* Dark mode background color */
+  color: #ddd; /* Adjust text color if needed */
+}
+
+/* Footer Links Styling */
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem; /* Adds space between the links */
+}
+
+.footer-links li {
+  list-style: none;
+}
+
+.footer-links a {
+  color: #9f6161;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+/* Dark Mode Footer Links Styling */
+.footer.dark .footer-links a {
+  color: #bbb; /* Link color in dark mode */
+}
+
+.footer.dark .footer-links a:hover {
+  color: #fff;
+}
