@@ -48,8 +48,6 @@ class User(AbstractUser):
 
     # objects = UserManager()
     # USERNAME_FIELD = 'user_id'
-
-
 class Meta:
     verbose_name = 'User'
     verbose_name_plural = 'Users'
