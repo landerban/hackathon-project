@@ -65,6 +65,7 @@ imported
 - daphne
 - Pillow
 - dotenv
+- djangorestframework-simplejwt
 
 Download Python
 
@@ -80,7 +81,7 @@ Check python and pip version
 
 Install packages
 
-> pip install django channels djangorestframework django-cors-headers channels_redis daphne pillow
+> pip install django channels djangorestframework django-cors-headers channels_redis daphne pillow djangorestframework-simplejwt
 
 run server (init)
 
