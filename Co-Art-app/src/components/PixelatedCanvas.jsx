@@ -6,12 +6,12 @@ import ScreenshotButton from './ScreenshotButton';
 import '../css/PixelatedCanvas.css';
 import defaultBackground from '../assets/react.svg';
 
-const PixelatedCanvas = ({ width, height, gridCount, colorPalette }) => {
+const PixelatedCanvas = ({ width, height, gridCount, colorPalette}) => {
   const pixelSize = width / gridCount;
   const [pixels, setPixels] = useState({});
   const [canvasId, setCanvasId] = useState(null);
   const [selectedColor, setSelectedColor] = useState('#000000');
-  const [backgroundImage, setBackgroundImage] = useState(defaultBackground);
+  const [backgroundImageUrl, setBackgroundImageUrl] = useState(""); // State for background image URL
   const [clickDisabled, setClickDisabled] = useState(false);
   const [intervalTrigger, setIntervalTrigger] = useState(0); // Trigger state for intervals
 
@@ -19,9 +19,28 @@ const PixelatedCanvas = ({ width, height, gridCount, colorPalette }) => {
   const time_duration = parseInt(localStorage.getItem('time_duration') || '2000', 10) * 1000;
   console.log(`time_duration set to: ${time_duration} ms`);
 
-  const changeBackgroundImage = (newImage) => {
-    setBackgroundImage(newImage);
-  };
+
+  useEffect(() => {
+    // Fetch color palette and background image from the API
+    axios
+      .get('http://127.0.0.1:8000/canvas/api/get_canvas')
+      .then((response) => {
+        const backgroundImagePath = response.data.background_image;
+
+        // Prepend the backend base URL to the relative path
+        const baseUrl = 'http://127.0.0.1:8000';
+        const fullImageUrl = backgroundImagePath.startsWith('/media')
+          ? `${baseUrl}${backgroundImagePath}`
+          : backgroundImagePath;
+          
+        setBackgroundImageUrl(fullImageUrl); // Store the full URL in state
+        setIsLoaded(true); // Mark as loaded once data is fetched
+      })
+      .catch((error) => {
+        console.error('Error fetching color palette:', error);
+        setIsLoaded(true); // Mark as loaded even if there is an error
+      });
+  }, []);
 
   // Fetch pixel data from API whenever intervalTrigger changes
   useEffect(() => {
@@ -97,7 +116,9 @@ const PixelatedCanvas = ({ width, height, gridCount, colorPalette }) => {
     }
   }, [canvasId, selectedColor, clickDisabled, time_duration]);
 
+  
   return (
+    
     <div className="pixelated-canvas-container">
       <div className="color-bar-container">
         <VerticalColorBar selectedColor={selectedColor} onColorSelect={setSelectedColor} colorPalette={colorPalette} />
@@ -108,7 +129,7 @@ const PixelatedCanvas = ({ width, height, gridCount, colorPalette }) => {
         className="canvas canvas-stage-container"
         style={{
           backgroundColor: 'rgba(255, 255, 255, 0.5)', // Adds transparency to the background color
-          backgroundImage: `url(${backgroundImage})`,
+          backgroundImage: `url(${backgroundImageUrl})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
