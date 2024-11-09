@@ -63,6 +63,7 @@ imported
 - djangorestframework
 - django-cors-headers
 - daphne
+- Pillow
 
 Download Python
 
@@ -78,7 +79,7 @@ Check python and pip version
 
 Install packages
 
-> pip install django channels djangorestframework django-cors-headers channels_redis daphne
+> pip install django channels djangorestframework django-cors-headers channels_redis daphne pillow
 
 run server (init)
 
@@ -97,4 +98,3 @@ create admin
 models to db migration
 
 > python manage.py makemigrations
-

@@ -1,30 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Stage, Layer, Rect } from 'react-konva';
+import VerticalColorBar from './VerticalColorBar';
+import ScreenshotButton from './ScreenshotButton';
+import '../css/PixelatedCanvas.css';
 
 const PixelatedCanvas = ({ width, height, gridCount }) => {
   const pixelSize = width / gridCount;
   const [pixels, setPixels] = useState({});
-  const [canvasId, setCanvasId] = useState(null); // State to store canvas ID from API
+  const [canvasId, setCanvasId] = useState(null);
+  const [selectedColor, setSelectedColor] = useState('#000000');
 
-  // Fetch initial data from the API when the component mounts
   useEffect(() => {
     axios
       .get('http://127.0.0.1:8000/canvas/api/get_placements')
       .then((response) => {
         const placements = response.data;
-        
-        // Extract canvas ID from the first item in the response
         if (placements.length > 0) {
           setCanvasId(placements[0].canvas_id);
         }
 
-        // Map the response data into the pixels state
         const pixelData = {};
         placements.forEach(({ pixel_x, piexl_y, pixel_color }) => {
           const key = `${pixel_x}-${piexl_y}`;
           pixelData[key] = pixel_color;
-          console.log(`Pixel at (${pixel_x}, ${piexl_y}) with color ${pixel_color}`);
         });
         setPixels(pixelData);
       })
@@ -33,25 +32,22 @@ const PixelatedCanvas = ({ width, height, gridCount }) => {
       });
   }, []);
 
-  // Handle pixel click to toggle color and post the data to the API
   const handlePixelClick = (colIndex, rowIndex) => {
     const key = `${colIndex}-${rowIndex}`;
-    const newColor = pixels[key] ? null : '#000000';
+    const newColor = selectedColor;
 
     setPixels((prevPixels) => ({
       ...prevPixels,
-      [key]: newColor, // Toggle between black and transparent (null)
+      [key]: newColor,
     }));
 
-    // Ensure canvasId is available before posting
     if (canvasId !== null) {
-      // Send the new pixel data to the API
       axios
         .post('http://127.0.0.1:8000/canvas/api/place', {
           canvas_id: canvasId,
           pixel_x: colIndex,
           pixel_y: rowIndex,
-          pixel_color: newColor || '#ffffff', // Send white if color is null
+          pixel_color: newColor,
         })
         .then((response) => {
           console.log('Pixel data successfully posted:', response.data);
@@ -65,10 +61,14 @@ const PixelatedCanvas = ({ width, height, gridCount }) => {
   };
 
   return (
-    <div>
-      <Stage width={width} height={height} style={{ background: 'transparent' }}>
+    <div className="pixelated-canvas-container">
+      <div className="color-bar-container">
+        <VerticalColorBar selectedColor={selectedColor} onColorSelect={setSelectedColor} />
+        <ScreenshotButton className="canvas" />
+      </div>
+
+      <Stage width={width} height={height} className="canvas stage-container">
         <Layer>
-          {/* Render grid and pixels */}
           {Array.from({ length: gridCount }).map((_, rowIndex) =>
             Array.from({ length: gridCount }).map((_, colIndex) => {
               const x = colIndex * pixelSize;
