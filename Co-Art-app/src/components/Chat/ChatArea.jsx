@@ -16,25 +16,21 @@ function ChatArea({ isDark }) {
   };
 
   useEffect(() => {
-    const fetchMessages = async () => {
-      const todayDate = getTodayDate();
-      try {
-        const response = await axios.get(
-          `http://127.0.0.1:8000/chat/2024-11-09`
-        );
+    const todayDate = getTodayDate();
+    axios
+      .get("http://127.0.0.1:8000/chat/2024-11-09")
+      .then((response) => {
         if (Array.isArray(response.data)) {
           setMessages(response.data);
         } else {
           console.error("Data is not an array:", response.data);
         }
         setLoading(false);
-      } catch (error) {
+      })
+      .catch((error) => {
         console.error("Error fetching messages:", error);
-        setError("Error fetching messages");
         setLoading(false);
-      }
-    };
-    fetchMessages();
+      });
   }, []);
 
   if (loading) {
