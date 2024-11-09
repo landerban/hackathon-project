@@ -20,12 +20,12 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.views.static import serve
 from rest_framework import routers
-from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('canvas/', include('canvas.urls')),
     path('chat/', include('chat.urls')),
-    path('auth/',include('customauth.urls'))
-    path('', include('gallery.urls'))
+    path('auth/', include('customauth.urls')),
+    path('gallery/', include('gallery.urls')),
+    path('users/', include('users.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
