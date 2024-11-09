@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,6 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-8mmt8ud7n$s96oy(ou8^2%)3g1g$^*1%h1_rz)jfdd&w*!8=-2'
+
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = 'my-django-images-bucket-for-hackathon'
+AWS_S3_REGION_NAME = 'ap-northeast-2'  # e.g., 'us-west-2'
+AWS_QUERYSTRING_AUTH = False  # Optional, to make URLs without authentication tokens
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -36,6 +42,7 @@ CUSTOM_APPS = [
     'rest_framework',
     'corsheaders',
     'channels',
+    'storages',
     'users.apps.UsersConfig',
     'chat.apps.ChatConfig',
     'canvas.apps.CanvasConfig',
@@ -98,6 +105,7 @@ DATABASES = {
     }
 }
 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
