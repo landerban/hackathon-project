@@ -1,7 +1,7 @@
 import React from 'react';
 import '../css/navbar.css';
 import DarkModeAnimation from './DarkModeAnimation';
-import websiteLogo from '/vite.svg';
+import tiger from '../assets/sim_1.png';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function NavBar({ isDark, isAnimating, toggleDark, toggleLan, isEng }) {
@@ -20,7 +20,7 @@ export default function NavBar({ isDark, isAnimating, toggleDark, toggleLan, isE
     <header className={isDark ? 'dark' : ''}>
       <nav className="navbar navbar-expand-lg navbar-dark bg-light-custom px-3">
         <Link className="navbar-brand" to="/">
-          <img src={websiteLogo} alt="Profile Icon" className="profile-icon" />
+          <img src={tiger} alt="Profile Icon" className="profile-icon" />
         </Link>
         <button
           className="navbar-toggler"

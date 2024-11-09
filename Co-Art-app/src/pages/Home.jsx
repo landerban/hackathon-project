@@ -1,33 +1,16 @@
-import {useEffect, useState} from "react";
-import axios from "axios";
-// Define the Login function.
-export const Home = () => {
-     const [message, setMessage] = useState('');
-     useEffect(() => {
-        if(localStorage.getItem('access_token') === null){                   
-          setMessage("You Are Not Logged In. Please Log In.")
-        }
-        else{
-         (async () => {
-           try {
-             const {data} = await axios.get(   
-                            'http://localhost:8000/auth/home/', {
-                             headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-                             }
-                            }
-                           );
-             setMessage(data.message);
-          } catch (e) {
-            console.log('not auth')
-          }
-         })()};
-     }, []);
+import React from 'react';
+import About_Us_bg from '../assets/main-page_background.png';
+import '../css/Home.css'; // Import the CSS file
 
-     return (
-        <div className="form-signin mt-5 text-center">
-          <h3>Hi! {message}</h3>
-        </div>)
-}
-export default Home
+export const Home = () => {
+  return (
+    <div className="home-container">
+      <img src={About_Us_bg} alt="Background" className="background-image" />
+      <div className="content">
+        <h1>Welcome to the Place Where Traditional Meets Modern</h1>
+      </div>
+    </div>
+  );
+};
+
+export default Home;
