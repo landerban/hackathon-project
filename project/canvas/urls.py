@@ -9,5 +9,6 @@ appname="canvas"
 urlpatterns = [
     path("api/get_placements", views.get_placements, name="get_placements"),
     path("api/place", views.place, name="place"),
+    path("api/get_canvas",views.get_canvas,name="get_canvas")
 
 ]
