@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 CUSTOM_APPS = [
     'rest_framework',
     'corsheaders',
+    "users.apps.UsersConfig",
 ]
 
 # Only system apps in here
@@ -161,3 +162,7 @@ CHANNEL_LAYERS = {
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:5173'
 ]
+
+# Auth
+
+AUTH_USER_MODEL = "users.User"
