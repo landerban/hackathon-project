@@ -54,10 +54,10 @@ const PixelatedCanvas = ({ width, height, gridCount }) => {
       [key]: newColor,
     }));
 
-    if (canvasId !== null) {
+    if (1) {
       axios
         .post('http://127.0.0.1:8000/canvas/api/place', {
-          canvas_id: canvasId,
+          canvas_id: 1,
           pixel_x: colIndex,
           pixel_y: rowIndex,
           pixel_color: newColor,

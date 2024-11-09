@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Chats from './pages/Chats';
 import About from './pages/About';
 import Login from './pages/Login';
+//import Logout from './pages/Logout';
 import NotFound from './pages/NotFound';
 import Register from './pages/Register';
 import PageTransition from './components/PageTransition';
@@ -32,7 +33,6 @@ const AppRoutes = ({ isDark, isAuthenticated }) => {
             </PageTransition>
           } 
         />
-
         {/* Protected route for /chats */}
         <Route
           path="/chats"
