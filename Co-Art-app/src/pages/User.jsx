@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
-// Define the Login function.
-export const Home = () => {
+export const User = () => {
      const [message, setMessage] = useState('');
      useEffect(() => {
         if(localStorage.getItem('access_token') === null){                   
@@ -11,23 +10,25 @@ export const Home = () => {
          (async () => {
            try {
              const {data} = await axios.get(   
-                            'http://localhost:8000/auth/home/', {
+                            'http://localhost:8000/auth/user/', {
                              headers: {
                                 'Content-Type': 'application/json',
                                 'Authorization': `Bearer ${localStorage.getItem('access_token')}`
                              }
                             }
                            );
-             setMessage(data.message);
+             setMessage('You are:'+data.username+'. Your last_pixel_time is:'+data.last_pixel_time+'.\n Your id is:'+data.id+'.\n Your pixels_count is:'+data.pixels_count+".\n");
+        
+             
           } catch (e) {
-            console.log('not auth')
+            setMessage('You are not nogged in. Please log in.')
           }
          })()};
      }, []);
 
      return (
         <div className="form-signin mt-5 text-center">
-          <h3>Hi! {message}</h3>
+          <h3>{message}</h3>
         </div>)
 }
-export default Home
+export default User
