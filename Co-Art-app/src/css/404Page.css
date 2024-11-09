@@ -1,0 +1,88 @@
+/* General container */
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #ffffff; /* Light background */
+}
+
+/* Dark mode for the general container */
+.not-found-container.dark {
+  color: #e0e0e0; /* Light text color for dark background */
+  background-color: #1a1a1a; /* Dark background */
+}
+
+/* Error illustration styling */
+.error-illustration {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 8rem;
+  color: #333;
+}
+
+.not-found-container.dark .error-illustration {
+  color: #e0e0e0; /* Light color for numbers in dark mode */
+}
+
+/* Shape styles */
+.circle, .square {
+  width: 80px;
+  height: 80px;
+  background-color: #FF6B35; /* Light mode color */
+  display: inline-block;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+
+.square {
+  border-radius: 0;
+}
+
+/* Dark mode shapes */
+.not-found-container.dark .circle, 
+.not-found-container.dark .square {
+  background-color: #b4998a; /* Adjusted color for dark mode */
+}
+
+/* Text styling */
+h1 {
+  font-size: 2rem;
+  margin-top: 20px;
+  color: #073642; /* Dark text for light mode */
+}
+
+.not-found-container.dark h1 {
+  color: #b0c4de; /* Light color for text in dark mode */
+}
+
+/* Button styling */
+.back-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #FFF;
+  background-color: #FF6B35;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background-color: #d55b2a;
+}
+
+/* Dark mode button */
+.not-found-container.dark .back-button {
+  background-color: #FF9050;
+  color: #1a1a1a; /* Darker text color for contrast */
+}
+
+.not-found-container.dark .back-button:hover {
+  background-color: #ff7849; /* Slightly lighter on hover */
+}

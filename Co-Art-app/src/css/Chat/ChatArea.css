@@ -1,0 +1,44 @@
+.chat-area {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #ffffff; /* Light mode background */
+    transition: background-color 0.3s ease;
+  }
+
+  /* Dark Mode for Chat Area */
+.chat-area.dark {
+  background-color: #faf9f9; /* Dark mode background */
+}
+  
+  .message {
+    max-width: 60%;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .sent {
+    background-color: #8badd3;
+    color: #ffffff; /* Text color for light mode */
+  }
+  
+  .received {
+    background-color: #e5e5e5;
+    color: #333333; /* Text color for light mode */
+  }
+  
+
+
+/* Dark Mode for Sent Messages */
+.chat-area.dark .sent {
+  background-color: #005bb5; /* Darker blue for dark mode */
+  color: #ffffff; /* Text color in dark mode */
+}
+
+/* Dark Mode for Received Messages */
+.chat-area.dark .received {
+  background-color: #444444; /* Dark gray for dark mode */
+  color: #e0e0e0; /* Light text color for readability */
+}

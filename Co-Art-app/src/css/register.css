@@ -1,0 +1,114 @@
+/* Full height image for the left section */
+.left-section {
+    background-color: #ebe8e8;
+    padding: 0;
+}
+
+.full-height {
+    object-fit: cover;
+    height: 100vh;
+    width: 100%;
+}
+
+/* Right section styling - Light Mode */
+.signup-form {
+    max-width: 400px;
+}
+
+.signup-form h1 {
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 2px;
+}
+
+.signup-form h2 {
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+
+.signup-form p {
+    color: #666;
+}
+
+.form-label {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.form-control {
+    border: 3px solid #cf6969;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.btn-primary {
+    background-color: #8b3333;
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.btn-primary:hover {
+    background-color: #de2020;
+}
+
+a {
+    color: #2b1f1f;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #000;
+}
+
+.form-control::placeholder {
+    color: #888; /* Light placeholder color */
+}
+
+/* Dark Mode - Activated when the .dark class is added to a parent element */
+.dark .left-section {
+    background-color: #111;
+}
+
+.dark .right-section{
+    background-color: #111;
+}
+.dark .signup-form p {
+    color: #ffffff;
+}
+
+.dark .form-label {
+    color: #aaa;
+}
+
+.dark .form-control {
+    border: 3px solid #5e5e5e;
+    background-color: #333;
+    color: #ddd;
+}
+
+.dark .btn-primary {
+    background-color: #444;
+    color: #fff;
+}
+
+.dark .btn-primary:hover {
+    background-color: #666;
+}
+
+.dark a {
+    color: #999;
+}
+
+.dark a:hover {
+    color: #ddd;
+}
+
+.dark .signup-form h1, .dark .signup-form h2 {
+    color: #eee;
+}
+
+.dark .form-control::placeholder {
+    color: #aaa; /* Dark mode placeholder color */
+}

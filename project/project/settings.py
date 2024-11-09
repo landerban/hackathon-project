@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 # All made Apps in here
 CUSTOM_APPS = [
+    'canvas',
     'rest_framework',
     'corsheaders',
     "users.apps.UsersConfig",
