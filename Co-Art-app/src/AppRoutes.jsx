@@ -5,11 +5,13 @@ import Home from './pages/Home';
 import Chats from './pages/Chats';
 import About from './pages/About';
 import Login from './pages/Login';
-//import Logout from './pages/Logout';
+import Logout from './pages/Logout';
+import './interceptors/axios';
 import NotFound from './pages/NotFound';
 import Register from './pages/Register';
 import PageTransition from './components/PageTransition';
 import Canvas from './pages/Canvas';
+import User from './pages/User';
 import Gallery from './pages/Gallery';
 
 const AppRoutes = ({ isDark, isAuthenticated }) => {
@@ -34,6 +36,25 @@ const AppRoutes = ({ isDark, isAuthenticated }) => {
             </PageTransition>
           } 
         />
+        
+        <Route 
+          path="/user" 
+          element={
+            <PageTransition>
+              <User />
+            </PageTransition>
+          } 
+        />
+        
+        <Route 
+          path="/logout" 
+          element={
+            <PageTransition>
+              <Logout />
+            </PageTransition>
+          } 
+        />
+        
         {/* Protected route for /chats */}
         <Route
           path="/chats"

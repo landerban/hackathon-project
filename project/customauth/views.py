@@ -1,21 +1,17 @@
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt,ensure_csrf_cookie
-from django.contrib.auth.decorators import login_required
-from django.middleware.csrf import get_token
 from django.contrib.auth import get_user_model
-import json
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
+from .serializer import UserSerializer
 
 
-class HomeView(APIView):
-    permission_classes = (IsAuthenticated, )
+class HomeView(APIView):          
     def get(self, request):
+        if request.user.is_authenticated:
+          content = {'message': 'You Are Logged In'}
+          return Response(content)
         content = {'message': 'You Are Logged In'}
         return Response(content)
     
@@ -29,3 +25,29 @@ class LogoutView(APIView):
                return Response(status=status.HTTP_205_RESET_CONTENT)
           except Exception as e:
                return Response(status=status.HTTP_400_BAD_REQUEST)
+          
+class UserView(APIView):
+     permission_classes=(IsAuthenticated,)
+     def get(self,request):
+                serializer=UserSerializer(request.user)
+                return Response(serializer.data,status=status.HTTP_200_OK)
+               
+class RegisterView(APIView):
+     def post(self,request):
+          print(request.data)
+          username=request.data.get('username',None)
+          password=request.data.get('password',None)
+          email=request.data.get('email',None)
+          print(username,password)
+          if username and password:
+               u,created=get_user_model().objects.get_or_create(username=username,defaults={"username":username,"email":email})
+               if created:
+                    user=get_user_model().objects.get(username=username)
+                    user.set_password(password)
+                    user.save()
+                    return Response(status=status.HTTP_201_CREATED)
+               else:
+                    return Response(status=status.HTTP_409_CONFLICT)
+          else:
+               return Response(status=status.HTTP_400_BAD_REQUEST)
+          
