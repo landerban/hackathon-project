@@ -7,16 +7,22 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Gallery
+from users.models import User
 from .serializer import GallerySerializer
 
 
 class SaveGallery(APIView):
     def post(self, request, format=None):
-        serializer = GallerySerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        username = request.data.get('username')
+        user = User.objects.filter(username=username).first()
+
+        if user and user.is_superuser:
+            serializer = GallerySerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response({'message': 'Image uploaded successfully!'}, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'message': 'Unauthorized or invalid username.'}, status=status.HTTP_403_FORBIDDEN)
 
 
 class SendGallery(APIView):
