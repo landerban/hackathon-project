@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.utils import timezone
-from datetime import date
+from gallery.models import Gallery
 
 
 # class UserManager(BaseUserManager):
@@ -19,18 +19,10 @@ from datetime import date
 
 
 class User(AbstractUser):
-    class LanguageChoices(models.TextChoices):
-        KR = ("kr", "Korean")
-        EN = ("en", "English")
-
-    name = models.CharField(
+    username = models.CharField(
         max_length=150,
         unique=True,
         default="",
-    )
-    language = models.CharField(
-        max_length=2,
-        choices=LanguageChoices.choices,
     )
     last_pixel_time = models.DateTimeField(
         default=timezone.datetime(1900, 1, 1),
@@ -43,10 +35,17 @@ class User(AbstractUser):
         max_length=150,
         editable=False,
     )
-    email = models.EmailField(
-        editable=False,
+    pixels_count = models.PositiveIntegerField(
+        default=0
     )
-    
+    galleries = models.ManyToManyField(
+        Gallery,
+        related_name='users'
+    )
+
+    def __str__(self):
+        return self.username
+
     # objects = UserManager()
     # USERNAME_FIELD = 'user_id'
 
