@@ -10,8 +10,8 @@ function ChatInput() {
         placeholder="Type a message"
       />
       <div className="icons d-flex gap-3">
-        <span className="attachment-icon fs-4">📎</span>
-        <span className="camera-icon fs-4">📷</span>
+      <button type="submit" 
+              className="btn btn-primary">Submit</button>
       </div>
     </div>
   );
