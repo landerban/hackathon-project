@@ -3,7 +3,7 @@ from django.db import models
 
 
 class Gallery(models.Model):
-    image = models.ImageField(upload_to='gallery/srcs/')
+    image = models.ImageField(upload_to='gallery/')
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
