@@ -10,11 +10,7 @@ const ScreenshotButton = ({ className }) => {
     
     if (element) {
       html2canvas(element, { useCORS: true }).then((canvas) => {
-        // Log the base64-encoded URL if needed
-        const base64Image = canvas.toDataURL('image/png');
-        console.log('Base64 Encoded URL:', base64Image);
-
-        // Convert canvas to Blob for file download and uploading
+        // Convert canvas to a Blob for file upload and download
         canvas.toBlob((blob) => {
           if (!blob) {
             alert("Failed to take screenshot.");
@@ -33,13 +29,13 @@ const ScreenshotButton = ({ className }) => {
 
           alert('Screenshot taken and downloaded! Now sending to the server...');
 
-          // Create FormData and add 'userid' and 'image'
+          // Create FormData and add 'username' and 'image'
           const formData = new FormData();
-          formData.append('userid', '1'); // Add userid as a field
+          formData.append('username', 'asdf'); // Add username as a field
           formData.append('image', blob, 'screenshot.png'); // Append Blob as a file
 
-          // Send screenshot to the API after download
-          axios.post('http://127.0.0.1:8000/canvas/api/place', formData, {
+          // Send the screenshot to the API
+          axios.post('http://127.0.0.1:8000/gallery/api/upload/', formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
@@ -52,7 +48,10 @@ const ScreenshotButton = ({ className }) => {
             console.error('Error sending screenshot to server:', error);
             alert('Error sending screenshot to server.');
           });
-        }, 'image/png'); // Specify image type
+        }, 'image/png'); // Specify image type as PNG
+      }).catch((error) => {
+        console.error('Error capturing screenshot:', error);
+        alert('Error capturing screenshot.');
       });
     } else {
       console.error(`No element found with class name: ${className}`);
