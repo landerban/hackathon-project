@@ -36,7 +36,7 @@ AWS_QUERYSTRING_AUTH = False  # Optional, to make URLs without authentication to
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['13.125.194.159', 'co-nvers.place', '127.0.0.1']
+ALLOWED_HOSTS = ['13.125.194.159', 'co-nvers.place', '127.0.0.1', 'localhost']
 
 
 # Application definition
