@@ -26,4 +26,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('canvas/', include('canvas.urls')),
     path('chat/', include('chat.urls')),
+    path('auth/',include('customauth.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

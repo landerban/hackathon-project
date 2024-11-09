@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 # All made Apps in here
 CUSTOM_APPS = [
+    'customauth',
     'rest_framework',
     'corsheaders',
     'channels',
@@ -165,3 +166,5 @@ CORS_ALLOWED_ORIGINS = [
 # Auth
 
 AUTH_USER_MODEL = "users.User"
+SESSION_COOKIE_HTTPONLY=True
+CORS_ALLOW_CREDENTIALS=True

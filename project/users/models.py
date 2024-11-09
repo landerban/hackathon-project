@@ -46,7 +46,7 @@ class User(AbstractUser):
     email = models.EmailField(
         editable=False,
     )
-
+    
     # objects = UserManager()
     # USERNAME_FIELD = 'user_id'
 
