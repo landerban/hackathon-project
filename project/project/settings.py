@@ -158,7 +158,8 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
 ]
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  # Add your frontend URL here
+    'http://localhost:3000',  # Add your frontend URL her    
+    'http://localhost:5173',
 ]
 
 # Auth

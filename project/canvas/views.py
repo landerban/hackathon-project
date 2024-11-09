@@ -24,7 +24,10 @@ def get_canvas(request):
 @api_view(['POST'])
 def place(request):
     serializer=PixelsSerializer(data=request.data)
+    print("here")
     if serializer.is_valid():
+        
+        print("here")
         placementtime=now()
         placed_by=serializer.validated_data.get('placed_by')
         pixel_x=serializer.validated_data.get('pixel_x')

@@ -4,7 +4,7 @@ import { Stage, Layer, Rect } from 'react-konva';
 import VerticalColorBar from './VerticalColorBar';
 import ScreenshotButton from './ScreenshotButton';
 import '../css/PixelatedCanvas.css';
-import defaultBackground from '../assets/react.svg'; // Import the default background image
+import defaultBackground from '../assets/react.svg';
 
 const PixelatedCanvas = ({ width, height, gridCount }) => {
   const pixelSize = width / gridCount;
@@ -25,6 +25,13 @@ const PixelatedCanvas = ({ width, height, gridCount }) => {
         if (placements.length > 0) {
           setCanvasId(placements[0].canvas_id);
         }
+        console.log(placements[0].canvas_id)
+
+        console.log(placements[0].pixel_x)
+        console.log(placements[0].pixel_y)
+        console.log(placements[0].pixel_color)
+
+
 
         const pixelData = {};
         placements.forEach(({ pixel_x, piexl_y, pixel_color }) => {
@@ -54,6 +61,7 @@ const PixelatedCanvas = ({ width, height, gridCount }) => {
           pixel_x: colIndex,
           pixel_y: rowIndex,
           pixel_color: newColor,
+          placed_by:1
         })
         .then((response) => {
           console.log('Pixel data successfully posted:', response.data);
@@ -105,6 +113,15 @@ const PixelatedCanvas = ({ width, height, gridCount }) => {
             )}
           </Layer>
         </Stage>
+      </div>
+
+      {/* JSON Display for Debugging */}
+      <div className="json-debug">
+        <h3>Pixels State:</h3>
+        <pre>{JSON.stringify(pixels, null, 2)}</pre>
+
+        <h3>Canvas ID:</h3>
+        <pre>{JSON.stringify(canvasId, null, 2)}</pre>
       </div>
     </div>
   );
