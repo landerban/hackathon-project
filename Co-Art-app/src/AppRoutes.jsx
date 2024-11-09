@@ -14,7 +14,7 @@ import Canvas from './pages/Canvas';
 import User from './pages/User';
 import Gallery from './pages/Gallery';
 
-const AppRoutes = ({ isDark, isAuthenticated, setIsAuthenticated}) => {
+const AppRoutes = ({ isDark, isAuthenticated, setIsAuthenticated }) => {
   const location = useLocation();
   
   return (
@@ -54,9 +54,9 @@ const AppRoutes = ({ isDark, isAuthenticated, setIsAuthenticated}) => {
         <Route 
           path="/logout" 
           element={
-              <PageTransition>
-                <Logout isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
-              </PageTransition>
+            <PageTransition>
+              <Logout isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+            </PageTransition>
           } 
         />
         

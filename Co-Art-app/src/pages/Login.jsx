@@ -3,10 +3,10 @@ import axios from "axios";
 import '../css/Login.css'; // Import CSS for styling
 import { Link } from 'react-router-dom';
 
-
 export const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(''); // State for error message
 
   // Create the submit method.
   const submit = async e => {
@@ -34,7 +34,7 @@ export const Login = () => {
       window.location.href = '/';
     } catch (error) {
       console.error("Login error:", error);
-      alert("Login failed. Please check your credentials.");
+      setErrorMessage("Login failed. Please check your credentials."); // Set the error message
     }
   };
 
@@ -48,6 +48,14 @@ export const Login = () => {
       <div className="right-section">
         <form className="auth-form" onSubmit={submit}>
           <h3 className="auth-form-title">Sign In</h3>
+          
+          {/* Display error message */}
+          {errorMessage && (
+            <div className="error-message">
+              {errorMessage}
+            </div>
+          )}
+          
           <div className="form-group mt-3">
             <label>Username</label>
             <input 
@@ -60,6 +68,7 @@ export const Login = () => {
               onChange={e => setUsername(e.target.value)}
             />
           </div>
+          
           <div className="form-group mt-3">
             <label>Password</label>
             <input 
@@ -72,9 +81,11 @@ export const Login = () => {
               onChange={e => setPassword(e.target.value)}
             />
           </div>
+          
           <div className="d-grid gap-2 mt-3">
             <button type="submit" className="btn btn-primary">Submit</button>
           </div>
+          
           <div style={{ marginTop: "15px", textAlign: "center", fontSize: "14px" }}>
             Don’t have an account? <Link className="nav-link" to="/register" style={{ color: "#007bff", fontWeight: "bold", textDecoration: "none" }}>Sign Up</Link>
           </div>
