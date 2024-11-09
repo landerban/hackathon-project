@@ -10,7 +10,7 @@ from .models import Gallery
 from .serializer import GallerySerializer
 
 
-class GalleryList(APIView):
+class SaveGallery(APIView):
     def post(self, request, format=None):
         serializer = GallerySerializer(data=request.data)
         if serializer.is_valid():
@@ -19,7 +19,7 @@ class GalleryList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class GalleryAPIView(APIView):
+class SendGalley(APIView):
     def get(self, request):
         images = Gallery.objects.all()
         image_list = []
