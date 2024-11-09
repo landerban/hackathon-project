@@ -40,7 +40,8 @@ class User(AbstractUser):
     )
     galleries = models.ManyToManyField(
         Gallery,
-        related_name='users'
+        related_name='users',
+        null=True,
     )
 
     def __str__(self):
@@ -48,6 +49,8 @@ class User(AbstractUser):
 
     # objects = UserManager()
     # USERNAME_FIELD = 'user_id'
+
+
 class Meta:
     verbose_name = 'User'
     verbose_name_plural = 'Users'
