@@ -28,21 +28,12 @@ class User(AbstractUser):
         unique=True,
         default="",
     )
-    date_joined = models.DateTimeField(
-        auto_now_add=True,
-    )
-    is_active = models.BooleanField(
-        default=True,
-    )
-    is_staff = models.BooleanField(
-        default=False,
-    )
     language = models.CharField(
         max_length=2,
         choices=LanguageChoices.choices,
     )
     last_pixel_time = models.DateTimeField(
-        default=timezone.datetime(1900,1,1),
+        default=timezone.datetime(1900, 1, 1),
     )
     first_name = models.CharField(
         max_length=150,
