@@ -9,14 +9,13 @@ const PixelatedCanvas = ({ width, height, gridCount }) => {
   const pixelSize = width / gridCount;
   const [pixels, setPixels] = useState({});
   const [canvasId, setCanvasId] = useState(null);
-  const [selectedColor, setSelectedColor] = useState('#000000'); // Default color for drawing
+  const [selectedColor, setSelectedColor] = useState('#000000');
 
   useEffect(() => {
     axios
       .get('http://127.0.0.1:8000/canvas/api/get_placements')
       .then((response) => {
         const placements = response.data;
-
         if (placements.length > 0) {
           setCanvasId(placements[0].canvas_id);
         }
@@ -63,13 +62,12 @@ const PixelatedCanvas = ({ width, height, gridCount }) => {
 
   return (
     <div className="pixelated-canvas-container">
-      {/* Render the VerticalColorBar component */}
-      <VerticalColorBar selectedColor={selectedColor} onColorSelect={setSelectedColor} />
-      <ScreenshotButton className="my-classname" />
+      <div className="color-bar-container">
+        <VerticalColorBar selectedColor={selectedColor} onColorSelect={setSelectedColor} />
+        <ScreenshotButton className="canvas" />
+      </div>
 
-
-      {/* Canvas Stage */}
-      <Stage width={width} height={height} className="my-classname stage-container">
+      <Stage width={width} height={height} className="canvas stage-container">
         <Layer>
           {Array.from({ length: gridCount }).map((_, rowIndex) =>
             Array.from({ length: gridCount }).map((_, colIndex) => {
