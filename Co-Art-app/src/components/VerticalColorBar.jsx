@@ -4,10 +4,10 @@ import '../css/VerticalColorBar.css';
 
 const colors = ['#FF5733', '#33FF57', '#3357FF', '#FFFF33', '#FF33FF', '#FFA500', '#00CED1', '#FF4500'];
 
-const VerticalColorBar = ({ selectedColor, onColorSelect }) => {
+const VerticalColorBar = ({ selectedColor, onColorSelect , colorPalette}) => {
   return (
     <div className="vertical-color-bar">
-      {colors.map((color) => (
+      {colorPalette.map((color) => (
         <div
           key={color}
           onClick={() => onColorSelect(color)}

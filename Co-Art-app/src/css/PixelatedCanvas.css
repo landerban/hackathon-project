@@ -10,10 +10,16 @@
 .canvas-stage-container {
   width: 1000px; /* Set to the width of your canvas */
   height: 1000px; /* Set to the height of your canvas */
+  background-color: white; /* Ensures the background is always white */
   background-size: cover;
   background-position: center;
   border-radius: 10px;
   overflow: hidden;
+  
+  /* Center the Stage within this container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Canvas stage */
