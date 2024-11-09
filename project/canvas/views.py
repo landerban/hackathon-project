@@ -21,9 +21,10 @@ def place(request):
         placed_by=serializer.validated_data.get('placed_by')
         user_last_placed=get_user_model().objects.get(username=placed_by).last_pixel_time
         user_time_limit=get_user_model().objects.get(username=placed_by).time_limit_sec
-        get_user_model().objects.get(username=placed_by).last_pixel_time=now()
         if placementtime>=user_last_placed+timedelta(seconds=user_time_limit):
-            print("clear")
+            user = get_user_model().objects.get(username=placed_by)
+            user.last_pixel_time=placementtime
+            user.save()
             serializer.save()
 
             return Response(serializer.data,status=status.HTTP_201_CREATED)
