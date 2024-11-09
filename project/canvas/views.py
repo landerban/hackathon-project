@@ -53,8 +53,10 @@ def place(request):
 
             user = get_user_model().objects.get(username=placed_by)
             user.last_pixel_time=placementtime
+            user.pixels_count+=1
             user.save()
             serializer.save()
+
 
             return Response(serializer.data,status=status.HTTP_201_CREATED)
         else:

@@ -17,7 +17,9 @@ class SaveGallery(APIView):
         user = User.objects.filter(username=username).first()
 
         if user and user.is_superuser:
-            serializer = GallerySerializer(data=request.data)
+            image = request.FILES.get("image")
+            serializer = GallerySerializer(
+                data={'image': image})
             if serializer.is_valid():
                 serializer.save()
                 return Response({'message': 'Image uploaded successfully!'}, status=status.HTTP_201_CREATED)
