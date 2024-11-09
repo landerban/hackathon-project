@@ -19,16 +19,13 @@ class SaveGallery(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class SendGalley(APIView):
+class SendGallery(APIView):
     def get(self, request):
         images = Gallery.objects.all()
         image_list = []
         for img in images:
-            image_path = os.path.join(
-                settings.MEDIA_ROOT, img.image.name)
-            with open(image_path, "rb") as image_file:
-                encoded_string = base64.b64encode(
-                    image_file.read()).decode("utf-8")
-                image_list.append({"id": img.id,
-                                  "image": f"data:image/jpeg;base64,{encoded_string}"})
+            image_list.append({
+                "id": img.id,
+                "image": img.image.url  # Use the image URL directly
+            })
         return JsonResponse({"images": image_list})

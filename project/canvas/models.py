@@ -18,20 +18,6 @@ class Pixels(models.Model):
 
 
 class Canvas(models.Model):
-<<<<<<< HEAD
-    background_image=models.ImageField(default="/srcs/fallback.png",max_length=150,upload_to='srcs/')
-    credits=models.CharField(default="No Credits",max_length=150)
-    time_control=models.CharField(max_length=8,default="blitz")
-    color_pallette1 = models.CharField(default="#a33a41", max_length=7)
-    color_pallette2 = models.CharField(default="#ea6d57", max_length=7)
-    color_pallette3 = models.CharField(default="#ffdc80", max_length=7)
-    color_pallette4 = models.CharField(default="#ffe8f0", max_length=7)
-    color_pallette5 = models.CharField(default="#f0596a", max_length=7)
-    color_pallette6 = models.CharField(default="#000000", max_length=7)
-    color_pallette7 = models.CharField(default="#251832", max_length=7)
-    color_pallette8 = models.CharField(default="#feeaf3", max_length=7)
-    color_pallette9 = models.CharField(default="#ffffff", max_length=7)
-=======
     class TimerChoices(models.TextChoices):
         BLITZ = ("blitz", "Blitz")
         RAPID = ("rapid", "Rapid")
@@ -47,14 +33,12 @@ class Canvas(models.Model):
     )
     color_pallette1 = models.CharField(default="#a33a41", max_length=7)
     color_pallette2 = models.CharField(default="#ea6d57", max_length=7)
-    color_pallette2 = models.CharField(default="#ffdc80", max_length=7)
-    color_pallette3 = models.CharField(default="#ffe8f0", max_length=7)
-    color_pallette4 = models.CharField(default="#f0596a", max_length=7)
-    color_pallette5 = models.CharField(default="#000000", max_length=7)
-    color_pallette6 = models.CharField(default="#251832", max_length=7)
-    color_pallette7 = models.CharField(default="#feeaf3", max_length=7)
-    color_pallette8 = models.CharField(default="#ffffff", max_length=7)
+    color_pallette3 = models.CharField(default="#ffdc80", max_length=7)
+    color_pallette4 = models.CharField(default="#ffe8f0", max_length=7)
+    color_pallette5 = models.CharField(default="#f0596a", max_length=7)
+    color_pallette6 = models.CharField(default="#000000", max_length=7)
+    color_pallette7 = models.CharField(default="#251832", max_length=7)
+    color_pallette8 = models.CharField(default="#feeaf3", max_length=7)
 
->>>>>>> 2c4eb00d6d4d606ac680e9fcd4773da15ebf32db
     def __str__(self):
         return self.time_control

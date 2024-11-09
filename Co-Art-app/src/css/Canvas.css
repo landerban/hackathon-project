@@ -23,3 +23,27 @@
   margin: 10px 0 0; /* Adjusts margin as needed */
   font-size: 1.5em;
 }
+
+.mode-info {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: bold;
+  padding: 10px 15px; /* Adds padding inside the box */
+  background-color: #f0f0f0; /* Light background color for better readability */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a lifted effect */
+  display: inline-block; /* Ensures it doesn’t stretch across the container */
+  margin-top: 10px; /* Adds space above */
+  margin-bottom: 20px; /* Adds space below */
+}
+
+
+.credit-info {
+  font-size: 1.2em;
+  color: #444;
+  margin-top: 20px;
+  font-weight: bold;
+  text-align: right;
+}
+
