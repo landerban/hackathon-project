@@ -7,6 +7,15 @@
   padding: 20px;
 }
 
+.canvas-stage-container {
+  width: 1000px; /* Set to the width of your canvas */
+  height: 1000px; /* Set to the height of your canvas */
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
 /* Canvas stage */
 .stage-container {
   background-color: transparent;

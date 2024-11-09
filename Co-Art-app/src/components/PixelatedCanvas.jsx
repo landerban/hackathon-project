@@ -4,12 +4,18 @@ import { Stage, Layer, Rect } from 'react-konva';
 import VerticalColorBar from './VerticalColorBar';
 import ScreenshotButton from './ScreenshotButton';
 import '../css/PixelatedCanvas.css';
+import defaultBackground from '../assets/react.svg'; // Import the default background image
 
 const PixelatedCanvas = ({ width, height, gridCount }) => {
   const pixelSize = width / gridCount;
   const [pixels, setPixels] = useState({});
   const [canvasId, setCanvasId] = useState(null);
   const [selectedColor, setSelectedColor] = useState('#000000');
+  const [backgroundImage, setBackgroundImage] = useState(defaultBackground);
+
+  const changeBackgroundImage = (newImage) => {
+    setBackgroundImage(newImage);
+  };
 
   useEffect(() => {
     axios
@@ -67,32 +73,39 @@ const PixelatedCanvas = ({ width, height, gridCount }) => {
         <ScreenshotButton className="canvas" />
       </div>
 
-      <Stage width={width} height={height} className="canvas stage-container">
-        <Layer>
-          {Array.from({ length: gridCount }).map((_, rowIndex) =>
-            Array.from({ length: gridCount }).map((_, colIndex) => {
-              const x = colIndex * pixelSize;
-              const y = rowIndex * pixelSize;
-              const key = `${colIndex}-${rowIndex}`;
-              const fill = pixels[key] || 'transparent';
+      <div
+        className="canvas canvas-stage-container"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.8)), url(${backgroundImage})`,
+        }}
+      >
+        <Stage width={width} height={height}>
+          <Layer>
+            {Array.from({ length: gridCount }).map((_, rowIndex) =>
+              Array.from({ length: gridCount }).map((_, colIndex) => {
+                const x = colIndex * pixelSize;
+                const y = rowIndex * pixelSize;
+                const key = `${colIndex}-${rowIndex}`;
+                const fill = pixels[key] || 'transparent';
 
-              return (
-                <Rect
-                  key={key}
-                  x={x}
-                  y={y}
-                  width={pixelSize}
-                  height={pixelSize}
-                  fill={fill}
-                  stroke="#cccccc"
-                  strokeWidth={1}
-                  onClick={() => handlePixelClick(colIndex, rowIndex)}
-                />
-              );
-            })
-          )}
-        </Layer>
-      </Stage>
+                return (
+                  <Rect
+                    key={key}
+                    x={x}
+                    y={y}
+                    width={pixelSize}
+                    height={pixelSize}
+                    fill={fill}
+                    stroke="#cccccc"
+                    strokeWidth={1}
+                    onClick={() => handlePixelClick(colIndex, rowIndex)}
+                  />
+                );
+              })
+            )}
+          </Layer>
+        </Stage>
+      </div>
     </div>
   );
 };
