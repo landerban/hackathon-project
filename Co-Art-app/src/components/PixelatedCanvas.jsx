@@ -13,19 +13,25 @@ const PixelatedCanvas = ({ width, height, gridCount, colorPalette }) => {
   const [selectedColor, setSelectedColor] = useState('#000000');
   const [backgroundImage, setBackgroundImage] = useState(defaultBackground);
   const [clickDisabled, setClickDisabled] = useState(false);
+  const [intervalTrigger, setIntervalTrigger] = useState(0); // Trigger state for intervals
 
   // Retrieve the time_duration from localStorage
-  const time_duration = parseInt(localStorage.getItem('time_duration') || '0', 10) * 1000;
+  const time_duration = parseInt(localStorage.getItem('time_duration') || '2000', 10) * 1000;
+  console.log(`time_duration set to: ${time_duration} ms`);
 
   const changeBackgroundImage = (newImage) => {
     setBackgroundImage(newImage);
   };
 
+  // Fetch pixel data from API whenever intervalTrigger changes
   useEffect(() => {
+    console.log("Fetching pixel data from API...");
     axios
       .get('http://127.0.0.1:8000/canvas/api/get_placements')
       .then((response) => {
         const placements = response.data;
+        console.log("API response:", placements);
+
         if (placements.length > 0) {
           setCanvasId(placements[0].canvas_id);
         }
@@ -40,7 +46,18 @@ const PixelatedCanvas = ({ width, height, gridCount, colorPalette }) => {
       .catch((error) => {
         console.error('Error fetching pixel placements:', error);
       });
-  }, []);
+  }, [intervalTrigger]); // Depend on intervalTrigger
+
+  // Timeout to change intervalTrigger at intervals of time_duration
+  useEffect(() => {
+    console.log("Setting timeout with time_duration:", time_duration);
+    const timeout = setTimeout(() => {
+      console.log("Timeout reached, updating intervalTrigger...");
+      setIntervalTrigger((prev) => prev + 1); // Update trigger to re-run API call
+    }, time_duration);
+
+    return () => clearTimeout(timeout); // Clear timeout on component unmount
+  }, [intervalTrigger, time_duration]); // Restart timeout when intervalTrigger or time_duration changes
 
   const handlePixelClick = useCallback((colIndex, rowIndex) => {
     if (clickDisabled) return; // Prevent clicking if disabled
@@ -53,10 +70,11 @@ const PixelatedCanvas = ({ width, height, gridCount, colorPalette }) => {
       [key]: newColor,
     }));
 
-    if (canvasId !== null) {
+    if (1) {
+      console.log("Posting pixel data:", { colIndex, rowIndex, newColor });
       axios
         .post('http://127.0.0.1:8000/canvas/api/place', {
-          canvas_id: canvasId,
+          canvas_id: 1,
           pixel_x: colIndex,
           pixel_y: rowIndex,
           pixel_color: newColor,
