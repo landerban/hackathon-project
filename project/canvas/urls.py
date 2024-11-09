@@ -8,4 +8,6 @@ from . import views
 appname="canvas"
 urlpatterns = [
     path("api/get_placements", views.get_placements, name="get_placements"),
+    path("api/place", views.place, name="place"),
+
 ]

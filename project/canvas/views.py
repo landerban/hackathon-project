@@ -9,3 +9,11 @@ def get_placements(request):
     pixels = Pixels.objects.all()
     serializer = PixelsSerializer(pixels, many=True)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def place(request):
+    serializer=PixelsSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data,status=status.HTTP_201_CREATED)
+    return Response(serializer.data,status=status.HTTP_400_BAD_REQUEST)
