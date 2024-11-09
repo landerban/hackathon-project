@@ -1,0 +1,29 @@
+.canvas-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.canvas-content {
+  position: relative;
+  text-align: center; /* Center-aligns other content */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  background: 
+    linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), /* Semi-transparent overlay */
+    url('../assets/react.svg'); /* Background image */
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.canvas-content h1 {
+  text-align: right; /* Moves h1 to the right within its container */
+  margin: 10px 0 0; /* Adjusts margin as needed */
+  font-size: 1.5em;
+}
