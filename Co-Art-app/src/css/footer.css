@@ -1,0 +1,37 @@
+/* Footer Container */
+.footer {
+    border-top: 1px solid #444;
+    background-color: #9f6161;
+  }
+  
+  /* Dark Mode for Footer */
+  .footer.dark {
+    background-color: #333; /* Dark mode background color */
+    color: #ddd; /* Adjust text color if needed */
+  }
+  
+  /* Footer Links Styling */
+  .footer-links li {
+    list-style: none;
+  }
+  
+  .footer-links a {
+    color: #9f6161;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+  }
+  
+  .footer-links a:hover {
+    color: #fff;
+  }
+  
+  /* Dark Mode Footer Links Styling */
+  .footer.dark .footer-links a {
+    color: #bbb; /* Link color in dark mode */
+  }
+  
+  .footer.dark .footer-links a:hover {
+    color: #fff;
+  }
+  

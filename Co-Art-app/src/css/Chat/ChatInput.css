@@ -1,0 +1,12 @@
+.chat-input {
+    border-top: 1px solid #e5e5e5;
+  }
+  
+  .chat-input input[type="text"] {
+    border-radius: 20px;
+  }
+  
+  .attachment-icon, .camera-icon {
+    cursor: pointer;
+  }
+  
