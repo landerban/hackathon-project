@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import Register from './pages/Register';
 import PageTransition from './components/PageTransition';
+import Canvas from './pages/Canvas';
 
 const AppRoutes = ({ isDark, isAuthenticated }) => {
   const location = useLocation();
@@ -51,6 +52,15 @@ const AppRoutes = ({ isDark, isAuthenticated }) => {
           element={
             <PageTransition>
               <About isDark={isDark} />
+            </PageTransition>
+          } 
+        />
+
+        <Route 
+          path="/canvas" 
+          element={
+            <PageTransition>
+              <Canvas isDark={isDark} />
             </PageTransition>
           } 
         />

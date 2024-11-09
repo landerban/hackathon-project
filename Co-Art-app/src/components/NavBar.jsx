@@ -33,6 +33,12 @@ export default function NavBar({ isDark, isAnimating, toggleDark, toggleLan, isE
             <li className="nav-item">
               <Link className="nav-link" to="/about">About Us</Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/gallery">Gallery</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/canvas">Canvas</Link>
+            </li>
           </ul>
 
           <div className="d-flex align-items-center">
