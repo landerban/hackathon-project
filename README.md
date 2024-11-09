@@ -48,6 +48,7 @@ imported
 - daphne
 - Pillow
 - dotenv
+- djangorestframework-simplejwt
 
 Download Python
 

@@ -6,13 +6,13 @@ import '../css/Canvas.css';
 const Canvas = () => {
   const [isLoaded, setIsLoaded] = useState(false); // Track if the data is loaded
   const [colorPalette, setColorPalette] = useState([]); // State for color palette
+  const [backgroundImageUrl, setBackgroundImageUrl] = useState(""); // State for background image URL
 
   useEffect(() => {
-    // Fetch color palette from the API
+    // Fetch color palette and background image from the API
     axios
       .get('http://127.0.0.1:8000/canvas/api/get_canvas')
       .then((response) => {
-        // Extract colors from the response and store them in an array
         const palette = [
           response.data.color_pallette1,
           response.data.color_pallette2,
@@ -24,11 +24,21 @@ const Canvas = () => {
           response.data.color_pallette8,
         ];
         setColorPalette(palette);
+
         const timeControl = response.data.time_control;
         const credits = response.data.credits;
+        const backgroundImagePath = response.data.background_image;
 
         localStorage.setItem('credits', credits);
         localStorage.setItem('time_control', timeControl);
+
+        // Prepend the backend base URL to the relative path
+        const baseUrl = 'http://127.0.0.1:8000';
+        const fullImageUrl = backgroundImagePath.startsWith('/media')
+          ? `${baseUrl}${backgroundImagePath}`
+          : backgroundImagePath;
+          
+        setBackgroundImageUrl(fullImageUrl); // Store the full URL in state
         setIsLoaded(true); // Mark as loaded once data is fetched
       })
       .catch((error) => {
@@ -51,20 +61,23 @@ const Canvas = () => {
   const time_duration = localStorage.getItem('time_duration') || "default_time";
 
   if (!isLoaded) {
-    // Optionally show a loading message until the API call completes
     return <div>Loading...</div>;
   }
 
   return (
     <div className="canvas-container">
       {storedTimeControl && time_duration && (
-        <div className="mode-info">Mode: {storedTimeControl} <br />Time to Wait: {time_duration}</div>
+        <div className="mode-info">
+          Mode: {storedTimeControl} <br />
+          Time to Wait: {time_duration}
+        </div>
       )}
       <div className="canvas-content">
-        <PixelatedCanvas width={700} height={700} gridCount={80} colorPalette={colorPalette} />
+        <PixelatedCanvas width={700} height={700} gridCount={80} colorPalette={colorPalette}/>
         {credits && credits !== "No Credits" && (
           <h1 className="credit-info">Credit to: {credits}</h1>
         )}
+
       </div>
     </div>
   );
