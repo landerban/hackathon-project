@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.utils import timezone
+from datetime import date
 
 
 # class UserManager(BaseUserManager):
@@ -41,7 +42,7 @@ class User(AbstractUser):
         choices=LanguageChoices.choices,
     )
     last_pixel_time = models.DateTimeField(
-        default=timezone.now,
+        default=timezone.datetime(1900,1,1),
     )
     first_name = models.CharField(
         max_length=150,
