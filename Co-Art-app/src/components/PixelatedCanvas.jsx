@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { Stage, Layer, Rect } from 'react-konva';
 import VerticalColorBar from './VerticalColorBar';
@@ -25,17 +25,10 @@ const PixelatedCanvas = ({ width, height, gridCount }) => {
         if (placements.length > 0) {
           setCanvasId(placements[0].canvas_id);
         }
-        console.log(placements[0].canvas_id)
-
-        console.log(placements[0].pixel_x)
-        console.log(placements[0].pixel_y)
-        console.log(placements[0].pixel_color)
-
-
 
         const pixelData = {};
-        placements.forEach(({ pixel_x, piexl_y, pixel_color }) => {
-          const key = `${pixel_x}-${piexl_y}`;
+        placements.forEach(({ pixel_x, pixel_y, pixel_color }) => {
+          const key = `${pixel_x}-${pixel_y}`;
           pixelData[key] = pixel_color;
         });
         setPixels(pixelData);
@@ -45,7 +38,7 @@ const PixelatedCanvas = ({ width, height, gridCount }) => {
       });
   }, []);
 
-  const handlePixelClick = (colIndex, rowIndex) => {
+  const handlePixelClick = useCallback((colIndex, rowIndex) => {
     const key = `${colIndex}-${rowIndex}`;
     const newColor = selectedColor;
 
@@ -54,14 +47,14 @@ const PixelatedCanvas = ({ width, height, gridCount }) => {
       [key]: newColor,
     }));
 
-    if (canvasId !== null) {
+    if (1) {
       axios
         .post('http://127.0.0.1:8000/canvas/api/place', {
-          canvas_id: canvasId,
+          canvas_id: 1,
           pixel_x: colIndex,
           pixel_y: rowIndex,
           pixel_color: newColor,
-          placed_by:1
+          placed_by: 1,
         })
         .then((response) => {
           console.log('Pixel data successfully posted:', response.data);
@@ -72,7 +65,7 @@ const PixelatedCanvas = ({ width, height, gridCount }) => {
     } else {
       console.error('Canvas ID is not available');
     }
-  };
+  }, [canvasId, selectedColor]);
 
   return (
     <div className="pixelated-canvas-container">
