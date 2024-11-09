@@ -1,62 +1,68 @@
 /* Light Mode - Default Styles */
 .bg-light-custom {
-    background-color: #9f6161 !important;
+    background-color: #fff !important; /* Set background to white */
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
 }
 
 .profile-icon {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
 }
 
+/* Navigation Links */
 .nav-link {
-    color: #ccc !important;
-    font-weight: bold;
+    color: #000 !important;
+    font-weight: 600;
+    margin-right: 20px;
 }
 
 .nav-link:hover {
-    color: #ffffff !important;
+    color: #333 !important;
 }
 
+/* Auth Button Styling */
 .auth-button {
-    border: 1px solid #ccc !important;
-    color: #ccc !important;
+    background-color: #000 !important;
+    color: #fff !important;
     font-weight: bold;
+    border: 1px solid #000 !important;
+    padding: 5px 15px;
+    margin-left: 10px;
+    border-radius: 5px;
 }
 
-.auth-button:hover {
-    background-color: #444 !important;
-    color: #ffffff !important;
+.auth-button.login {
+    background-color: #fff !important;
+    color: #000 !important;
 }
 
-.language-link {
-    color: #ccc;
-    text-decoration: none;
+.auth-button.login:hover {
+    color: #333 !important;
+    border-color: #333 !important;
 }
 
-.language-link:hover {
-    color: #ffffff;
-}
-
-/* For Dark Mode Button */
+/* Dark Mode Button */
 .dark-mode {
-    width: 40px; /* Adjust the width for your desired size */
-    height: 40px; /* Make the height the same as the width for a perfect circle */
-    border-radius: 50%; /* Rounds the button to a circular shape */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #cdabab; /* Example background color */
-    color: #080000; /* Text color */
-    border: none; /* Remove default border */
-    cursor: pointer; /* Pointer cursor for interaction */
-    font-weight: bold; /* Bold text */
+    color: #080000;
+    font-weight: bold;
+    border: 1px solid #ccc !important;
+    margin-right: 10px;
 }
 
 .dark-mode:hover {
-    background-color: #666; /* Darker background on hover */
+    background-color: #666;
 }
 
-/* Activation of Dark Mode - Activated when the .dark class is added to a parent element */
+/* Dark Mode - Activated when the .dark class is added */
 .dark .bg-light-custom {
     background-color: #1a1a1a !important;
 }
@@ -66,43 +72,33 @@
 }
 
 .dark .nav-link:hover {
-    color: #ffffff !important;
+    color: #fff !important;
 }
 
 .dark .auth-button {
+    background-color: #333 !important;
+    color: #fff !important;
     border: 1px solid #666 !important;
-    color: #999 !important;
 }
 
 .dark .auth-button:hover {
-    background-color: #333 !important;
-    color: #ffffff !important;
+    background-color: #444 !important;
 }
 
-.dark .language-link {
-    color: #999;
+.dark .auth-button.login {
+    background-color: transparent !important;
+    color: #999 !important;
 }
 
-.dark .language-link:hover {
-    color: #ffffff;
+.dark .auth-button.login:hover {
+    color: #fff !important;
 }
 
-
-/* For Dark Mode Button */
 .dark .dark-mode {
-    width: 40px; /* Adjust the width for your desired size */
-    height: 40px; /* Make the height the same as the width for a perfect circle */
-    border-radius: 50%; /* Rounds the button to a circular shape */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #444; /* Example background color */
-    color: #fff; /* Text color */
-    border: none; /* Remove default border */
-    cursor: pointer; /* Pointer cursor for interaction */
-    font-weight: bold; /* Bold text */
+    background-color: #444;
+    color: #fff;
 }
 
 .dark .dark-mode:hover {
-    background-color: #666; /* Darker background on hover */
+    background-color: #666;
 }
