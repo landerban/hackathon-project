@@ -18,6 +18,11 @@ const ScreenshotButton = ({ className }) => {
             },
           });
 
+          if (data === undefined) {
+            alert("You should login first!");
+            return;
+          }
+
           // Convert canvas to a Blob for file upload and download
           canvas.toBlob((blob) => {
             if (!blob) {
