@@ -13,9 +13,11 @@ function App() {
   const [isEng, setIsEng] = useState(true);
 
   // Simulate authentication status
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('access_token'));
 
   function toggleDark() {
+    console.log(isAuthenticated)
+
     setIsDark((old) => ({
       ...old,
       animating: true, // Start animation
@@ -44,9 +46,8 @@ function App() {
       />
 
       <div>
-        <AppRoutes isDark={isDark.dark} isAuthenticated={isAuthenticated} />
+        <AppRoutes isDark={isDark.dark} isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}/>
       </div>
-      <Footer isDark={isDark.dark} isEng={isEng} /> 
     </>
   );
 }

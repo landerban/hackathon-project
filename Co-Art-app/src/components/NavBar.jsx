@@ -2,9 +2,20 @@ import React from 'react';
 import '../css/navbar.css';
 import DarkModeAnimation from './DarkModeAnimation';
 import websiteLogo from '/vite.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function NavBar({ isDark, isAnimating, toggleDark, toggleLan, isEng }) {
+  const navigate = useNavigate();
+
+  // Log out function to clear tokens and navigate to home
+  const handleLogout = () => {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    navigate('/');
+  };
+
+  const isLoggedIn = localStorage.getItem('access_token') !== null;
+
   return (
     <header className={isDark ? 'dark' : ''}>
       <nav className="navbar navbar-expand-lg navbar-dark bg-light-custom px-3">
@@ -42,7 +53,21 @@ export default function NavBar({ isDark, isAnimating, toggleDark, toggleLan, isE
           </ul>
 
           <div className="d-flex align-items-center">
-            <Link to='/register'><button className="btn btn-outline-light auth-button me-2">Log In</button></Link>
+            {isLoggedIn ? (
+              <>
+                <Link to="/user" className="btn btn-outline-light auth-button me-2">User</Link>
+                <button
+                  className="btn btn-outline-light auth-button me-2"
+                  onClick={handleLogout}
+                >
+                  Log Out
+                </button>
+              </>
+            ) : (
+              <Link to="/login">
+                <button className="btn btn-outline-light auth-button me-2">Log In</button>
+              </Link>
+            )}
 
             {/* Dark Mode Toggle Button */}
             <button
@@ -56,13 +81,6 @@ export default function NavBar({ isDark, isAnimating, toggleDark, toggleLan, isE
             {/* Overlay Animation */}
             <DarkModeAnimation isAnimating={isAnimating} isDark={isDark} />
 
-            {/* Language Toggle Button */}
-            <button
-              className="btn btn-outline-light auth-button me-2"
-              onClick={toggleLan}
-            >
-              {isEng ? 'Eng' : 'Kor'}
-            </button>
           </div>
 
         </div>

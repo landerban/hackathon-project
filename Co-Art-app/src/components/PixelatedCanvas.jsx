@@ -6,6 +6,7 @@ import ScreenshotButton from './ScreenshotButton';
 import '../css/PixelatedCanvas.css';
 import defaultBackground from '../assets/react.svg';
 
+
 const PixelatedCanvas = ({ width, height, gridCount, colorPalette}) => {
   const pixelSize = width / gridCount;
   const [pixels, setPixels] = useState({});
