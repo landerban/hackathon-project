@@ -43,7 +43,7 @@ class RegisterView(APIView):
                u,created=get_user_model().objects.get_or_create(username=username,defaults={"username":username,"email":email})
                if created:
                     user=get_user_model().objects.get(username=username)
-                    get_user_model().objects.get(username=username).set_password(password)
+                    user.set_password(password)
                     user.save()
                     return Response(status=status.HTTP_201_CREATED)
                else:
