@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.utils import timezone
 # Create your models here.
 
 
@@ -15,7 +16,8 @@ class Chat(models.Model):
     )
     room_name = models.CharField(
         max_length=15,
-        default="Today"
+        default=timezone.now().strftime('%Y-%m-%d'),
+        editable=False,
     )
 
     def __str__(self):
