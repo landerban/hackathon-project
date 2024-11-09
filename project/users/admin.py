@@ -12,9 +12,9 @@ class CustomUserAdmin(UserAdmin):
                 "fields": (
                     "username",
                     "password",
-                    "name",
-                    "language",
+                    "pixels_count",
                     "last_pixel_time",
+                    "galleries",
                 ),
                 "classes": ("wide",),
             },
@@ -41,5 +41,11 @@ class CustomUserAdmin(UserAdmin):
         ),
     )
 
-    list_display = ("id", "username", "name", "last_pixel_time")
+    list_display = ("id", "username", "pixels_count",
+                    "last_pixel_time", "galleries_display")
     list_display_links = ("username", )
+
+    def galleries_display(self, obj):
+        return ", ".join([str(gallery.id) for gallery in obj.galleries.all()])
+
+    galleries_display.short_description = "Galleries"
