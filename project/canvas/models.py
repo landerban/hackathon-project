@@ -14,7 +14,9 @@ class Pixels(models.Model):
         return self.pixel_color
     
 class Canvas(models.Model):
-    time_control=models.CharField(max_length=7)
+    background_image=models.ImageField(default="/srcs/fallback.png",max_length=150,upload_to='srcs/')
+    credits=models.CharField(default="No Credits",max_length=150)
+    time_control=models.CharField(max_length=8,default="blitz")
     color_pallette1=models.CharField(default="#a33a41",max_length=7)
     color_pallette2=models.CharField(default="#ea6d57",max_length=7)
     color_pallette2=models.CharField(default="#ffdc80",max_length=7)

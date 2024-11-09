@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 from .serializer import PixelsSerializer,CanvasSerializer
 from django.utils.timezone import now
 from datetime import datetime, timedelta
+from django.core.files.base import ContentFile
 
 @api_view(['GET'])
 def get_placements(request):
@@ -15,8 +16,8 @@ def get_placements(request):
 
 @api_view(['GET'])
 def get_canvas(request):
-    canvas=Canvas.objects.all()
-    serializer=CanvasSerializer(canvas,many=True)
+    canvas=Canvas.objects.all()[0]
+    serializer=CanvasSerializer(canvas)
     return Response(serializer.data)
 
 
@@ -28,8 +29,17 @@ def place(request):
         placed_by=serializer.validated_data.get('placed_by')
         pixel_x=serializer.validated_data.get('pixel_x')
         pixel_y=serializer.validated_data.get('pixel_y')
+        canvas_id=serializer.validated_data.get('canvas_id')
         user_last_placed=get_user_model().objects.get(username=placed_by).last_pixel_time
-        user_time_limit=get_user_model().objects.get(username=placed_by).time_limit_sec
+        time_control=Canvas.objects.get(id=canvas_id).time_control
+        user_time_limit=0
+        if time_control=="blitz":
+            user_time_limit=10
+        elif time_control=="rapid":
+            user_time_limit=60
+        elif time_control=="standard":
+            user_time_limit=1800
+        
         print(serializer.validated_data)
         print(pixel_x,pixel_y," debug \n")
         if placementtime>=user_last_placed+timedelta(seconds=user_time_limit):
