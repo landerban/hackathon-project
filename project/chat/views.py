@@ -7,10 +7,15 @@ from .serializers import ChatSerializer
 
 
 class ChatList(APIView):
-    def get(self, request, format=None):
-        messages = Chat.objects.all().order_by('timestamp')
+    def get(self, request, room_name, format=None):
+        messages = Chat.objects.filter(
+            room_name=room_name).order_by('timestamp')
         serializer = ChatSerializer(messages, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, room_name, format=None):
+        serializer = ChatSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(room_name=room_name)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
