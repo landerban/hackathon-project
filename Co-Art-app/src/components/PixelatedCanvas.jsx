@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Stage, Layer, Rect } from 'react-konva';
 import VerticalColorBar from './VerticalColorBar';
+import ScreenshotButton from './ScreenshotButton';
 import '../css/PixelatedCanvas.css';
 
 const PixelatedCanvas = ({ width, height, gridCount }) => {
@@ -64,9 +65,11 @@ const PixelatedCanvas = ({ width, height, gridCount }) => {
     <div className="pixelated-canvas-container">
       {/* Render the VerticalColorBar component */}
       <VerticalColorBar selectedColor={selectedColor} onColorSelect={setSelectedColor} />
+      <ScreenshotButton className="my-classname" />
+
 
       {/* Canvas Stage */}
-      <Stage width={width} height={height} className="stage-container">
+      <Stage width={width} height={height} className="my-classname stage-container">
         <Layer>
           {Array.from({ length: gridCount }).map((_, rowIndex) =>
             Array.from({ length: gridCount }).map((_, colIndex) => {
