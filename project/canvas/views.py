@@ -18,13 +18,12 @@ def place(request):
     serializer=PixelsSerializer(data=request.data)
     if serializer.is_valid():
         placementtime=now()
-        placed_by=serializer.data['placed_by']
-        user_last_placed=getattr(get_user_model().objects().get(id=placed_by),'last_pixel_time')
-        user_time_limit=getattr(get_user_model().objects().get(id=placed_by),'time_limit_sec')
-        get_user_model().objects.filter(id=placed_by).update(user_last_placed=now())
-
-
+        placed_by=serializer.validated_data.get('placed_by')
+        user_last_placed=get_user_model().objects.get(username=placed_by).last_pixel_time
+        user_time_limit=get_user_model().objects.get(username=placed_by).time_limit_sec
+        get_user_model().objects.get(username=placed_by).last_pixel_time=now()
         if placementtime>=user_last_placed+timedelta(seconds=user_time_limit):
+            print("clear")
             serializer.save()
 
             return Response(serializer.data,status=status.HTTP_201_CREATED)

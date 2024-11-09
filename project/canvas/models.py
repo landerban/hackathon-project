@@ -5,7 +5,7 @@ class Pixels(models.Model):
     canvas_id=models.IntegerField()
     pixel_x=models.IntegerField()
     piexl_y=models.IntegerField()
-    placed_by=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    placed_by=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,default=None)
     
 
     # hex color
