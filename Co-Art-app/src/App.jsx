@@ -42,7 +42,8 @@ function App() {
         toggleDark={toggleDark} 
         isDark={isDark.dark} 
         isAnimating={isDark.animating} 
-        isEng={isEng} 
+        isEng={isEng}
+        setIsAuthenticated={setIsAuthenticated}
       />
 
       <div>

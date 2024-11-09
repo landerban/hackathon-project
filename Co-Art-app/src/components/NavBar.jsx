@@ -3,15 +3,15 @@ import '../css/navbar.css';
 import DarkModeAnimation from './DarkModeAnimation';
 import tiger1 from '../assets/sim_1.png';
 import tiger2 from '../assets/sim.png';
-
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function NavBar({ isDark, isAnimating, toggleDark, toggleLan, isEng }) {
+export default function NavBar({ isDark, isAnimating, toggleDark, toggleLan, isEng ,setIsAuthenticated}) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
+    setIsAuthenticated(false);
     navigate('/');
   };
 

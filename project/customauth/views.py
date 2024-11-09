@@ -19,6 +19,7 @@ class LogoutView(APIView):
      permission_classes = (IsAuthenticated,)
      def post(self, request):
           try:
+               print("DEB")
                refresh_token = request.data["refresh_token"]
                token = RefreshToken(refresh_token)
                token.blacklist()

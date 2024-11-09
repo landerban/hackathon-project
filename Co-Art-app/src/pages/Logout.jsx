@@ -9,7 +9,6 @@ const Logout = ({ setIsAuthenticated }) => {
     // Function to handle the logout process
     const logoutUser = async () => {
       try {
-        // Attempt to call the logout API
         await axios.post(
           'http://localhost:8000/auth/logout/',
           { refresh_token: localStorage.getItem('refresh_token') },
@@ -20,23 +19,22 @@ const Logout = ({ setIsAuthenticated }) => {
         );
 
         // Clear tokens and update authentication state
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
-        axios.defaults.headers.common['Authorization'] = null;
+        localStorage.clear();
+        console.log("DBEEFE");
 
         // Set isAuthenticated to false to reflect logged-out state
         setIsAuthenticated(false);
 
         // Redirect to the login page after successful logout
-        navigate('/login');
-      } catch (error) {
+        navigate('/');
+      }catch (error) {
         console.error('Logout failed:', error);
       }
     };
 
     // Call the logout function
     logoutUser();
-  }, [setIsAuthenticated, navigate]); // Dependencies ensure this effect runs only once
+  }, []); // Dependencies ensure this effect runs only once
 
   return <div>Logging out...</div>; // Optional: Provide feedback while logging out
 };
