@@ -38,6 +38,7 @@ CUSTOM_APPS = [
     'users.apps.UsersConfig',
     'chat.apps.ChatConfig',
     'canvas.apps.CanvasConfig',
+    'gallery.apps.GalleryConfig',
 ]
 
 # Only system apps in here
