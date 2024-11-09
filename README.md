@@ -64,6 +64,7 @@ imported
 - django-cors-headers
 - daphne
 - Pillow
+- dotenv
 
 Download Python
 
@@ -98,3 +99,9 @@ create admin
 models to db migration
 
 > python manage.py makemigrations
+
+make .env file
+
+> pip install python-dotenv
+
+> then make .env file in HACKATHON-PROJECT folder, write AWS_ACCESS_KEY_ID and AWS_SECRET_KEY_ID like KEY = "~~"
