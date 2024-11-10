@@ -70,11 +70,11 @@ const PixelatedCanvas = ({ width, height, gridCount, colorPalette}) => {
 
   // Timeout to change intervalTrigger at intervals of time_duration
   useEffect(() => {
-    console.log("Setting timeout with time_duration:", time_duration);
+    console.log("Setting timeout with time_duration:", 3000);
     const timeout = setTimeout(() => {
       console.log("Timeout reached, updating intervalTrigger...");
       setIntervalTrigger((prev) => prev + 1); // Update trigger to re-run API call
-    }, time_duration);
+    }, 10000);
 
     return () => clearTimeout(timeout); // Clear timeout on component unmount
   }, [intervalTrigger, time_duration]); // Restart timeout when intervalTrigger or time_duration changes
@@ -98,7 +98,7 @@ const PixelatedCanvas = ({ width, height, gridCount, colorPalette}) => {
           pixel_x: colIndex,
           pixel_y: rowIndex,
           pixel_color: newColor,
-          placed_by: 1,
+          placed_by: localStorage.getItem("id"),
         })
         .then((response) => {
           console.log('Pixel data successfully posted:', response.data);

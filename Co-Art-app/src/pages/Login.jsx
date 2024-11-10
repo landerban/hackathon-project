@@ -30,8 +30,30 @@ export const Login = () => {
       localStorage.clear();
       localStorage.setItem('access_token', data.access);
       localStorage.setItem('refresh_token', data.refresh);
+
       axios.defaults.headers.common['Authorization'] = `Bearer ${data['access']}`;
+
+      try{
+          const { data } = await axios.get(
+            'http://localhost:8000/auth/user/',
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+              }
+            }
+          );
+
+          localStorage.setItem('id',data.id)
+          setMessage(''); // Clear any previous error message
+        
+        }catch(error){
+          console.log("this should never happed")
+        }
+        
       window.location.href = '/';
+
+
     } catch (error) {
       console.error("Login error:", error);
       setErrorMessage("Login failed. Please check your credentials."); // Set the error message

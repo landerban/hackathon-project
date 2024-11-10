@@ -46,11 +46,17 @@ const MyForm = () => {
         const data = await response.json();
         console.log("response:", data);
         setError(''); // Clear error if form is successfully submitted
+        window.location.href = '/login';
+
       } else {
         console.error("server error");
+        setError("Username already taken!");
+
+
       }
     } catch (error) {
-      console.error("request failed:", error);
+      console.error("request failed:", error);      
+      window.location.href = '/login';
     }
   };
 

@@ -11,6 +11,7 @@ export default function NavBar({ isDark, isAnimating, toggleDark, toggleLan, isE
   const handleLogout = () => {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
+    localStorage.removeItem('id');
     setIsAuthenticated(false);
     navigate('/');
   };
