@@ -4,7 +4,7 @@
 
 - Our website provides users an interactive art experience.
 - Coopreate or compete against strangers from the internet.
-- Website features a pixelated canvas, where users can place pixels on.
+- Website features a pixelated canvas, where any user can place pixels on.
 - The 8 colors that the useres can choose from are carefully curated to match the background image's tone.
 - Users can only place one pixel per the given time limit (10 seconds, 60 seconds or 1800 seconds).
 - The canvas is rotated out periodically to ensure a fresh experience.
@@ -35,16 +35,12 @@ Run the dev mode server
 
 Instructions for Backend
 
-Download Python
-
-> [Go to the official Python website.](https://www.python.org/downloads/)
-
-- Run the downloaded installer.
-  > check the box that says "Add Python to PATH"
+On a different console,
 
 Check python and pip version
 
 > python --version
+
 > pip --version
 
 Locate the file and go into it
@@ -65,5 +61,9 @@ create admin
 
 > python manage.py createsuperuser
 
-after run server
-please add at least one canvas in DB from admin page for proper work (~~/admin)
+run server
+
+> python manage.py runserver
+
+Log into the admin panel at ~/admin.
+Add a canvas entry to the canvas database.
