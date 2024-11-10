@@ -65,6 +65,5 @@ create admin
 
 > python manage.py createsuperuser
 
-run server
-
-> python manage.py runserver
+after run server
+please add at least one canvas in DB from admin page for proper work (~~/admin)
