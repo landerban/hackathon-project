@@ -12,17 +12,10 @@ const MotoPage = () => {
 
       {/* Top Left Card */}
       <div className="card top-left">
-        <h2>MOTO</h2>
+        <h2>About</h2>
         <p>
-          This website was created by a team of enthusiastic students for a
-          hackathon with the theme of Art. Our concept is to see how users
-          around the world can work together with their own limited resources.
-          With an emphasis on creating a unique experience, we worked for
-          several weeks, each member with a clear vision and objectives in their
-          designated roles. Would you find this project inspiring, or even
-          complex? Hopefully, it does. Working together, we created the artwork
-          to represent the merged ideas, showcasing a journey where white canvas
-          meets something entirely new and original.
+          In a world where many people’s lives are routine-driven and task-oriented, Convas offers a fun and simple way to tap into creativity daily. Even those without traditional art skills can contribute to something visually appealing, making creativity accessible to all.
+
         </p>
       </div>
 

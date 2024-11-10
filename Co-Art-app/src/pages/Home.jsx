@@ -7,7 +7,7 @@ export const Home = () => {
     <div className="home-container">
       <img src={About_Us_bg} alt="Background" className="background-image" />
       <div className="content">
-        <h1>Become a part of a world-class work of art</h1>
+        <h1>CONVAS-The Collaborative Art Project</h1>
       </div>
     </div>
   );
